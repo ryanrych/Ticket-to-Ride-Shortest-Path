@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include "PriorityQueueElement.h"
+#include "PriorirtyQueueElement.h"
 using namespace std;
 
 #ifndef PRIORITY_QUEUE_H_
