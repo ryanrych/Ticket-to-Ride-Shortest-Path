@@ -2,18 +2,17 @@
 #include <unordered_map>
 #include <vector>
 #include "PriorirtyQueueElement.h"
+#include "Hash.h"
 using namespace std;
 
 #ifndef PRIORITY_QUEUE_H_
 #define PRIORITY_QUEUE_H_
 
-template<class T>
 class PriorityQueue {
-
-private:
-    vector<PriorityQueueElement<T>*> contents;
+public:
+    vector<PriorityQueueElement*> contents;
     int currentSize;
-    unordered_map<T, int> itemToHeapIndex;
+    unordered_map<string, int> itemToHeapIndex;
 
 public:
 
@@ -21,7 +20,11 @@ public:
         currentSize = 0;
     }
 
-    T getMinimumItem() {
+    bool contains(string s){
+        return itemToHeapIndex.find(s)!=itemToHeapIndex.end();
+    }
+
+    string getMinimumItem() {
         return contents[0]->item;
     }
 
@@ -52,7 +55,7 @@ public:
         siftDown(0);
     }
 
-    void setPriority(T item, int priority) {
+    void setPriority(string item, int priority) {
         if (itemToHeapIndex.find(item) == itemToHeapIndex.end())
             insert(item, priority);
         else {
@@ -69,11 +72,9 @@ public:
         }
     }
 
-private:
-
-    void insert(T item, int priority) {
+    void insert(string item, int priority) {
         int index = currentSize++;
-        contents.push_back(new PriorityQueueElement<T>(item, priority));
+        contents.push_back(new PriorityQueueElement(item, priority));
         itemToHeapIndex[item] = index;
         siftUp(index);
     }
@@ -115,7 +116,7 @@ private:
         itemToHeapIndex.erase(contents[index1]->item);
         itemToHeapIndex.erase(contents[index2]->item);
 
-        PriorityQueueElement<T> *item = contents[index1];
+        PriorityQueueElement *item = contents[index1];
         contents[index1] = contents[index2];
         contents[index2] = item;
 
@@ -136,9 +137,9 @@ public:
         }
         cout << "[";
         for (int i = 0; i < currentSize - 1; i++) {
-            cout << contents[i].toString() << ", ";
+            cout << contents[i]->toString() << ", ";
         }
-        cout << contents[currentSize - 1].toString() << "]";
+        cout << contents[currentSize - 1]->toString() << "]";
     }
 };
 

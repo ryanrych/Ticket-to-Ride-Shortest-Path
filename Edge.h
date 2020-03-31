@@ -16,9 +16,11 @@ struct Edge{
         this->destination=destination;
         this->weight=weight;
     }
-    bool operator< (const Edge& edgeObj) const{
-        if(edgeObj.weight < this->weight)
-            return true;
+    bool operator<(const Edge& obj) const{
+        return (obj.weight<=this->weight);
+    }
+    bool operator==(const Edge& obj) const{
+        return (obj.weight==this->weight)&&(obj.destination.compare(obj.destination)==0);
     }
 };
 

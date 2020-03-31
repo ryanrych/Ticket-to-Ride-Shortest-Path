@@ -5,15 +5,16 @@ using namespace std;
 #ifndef PRIORITY_QUEUE_ELEMENT_H_
 #define PRIORITY_QUEUE_ELEMENT_H_
 
-template<class T>
+
 class PriorityQueueElement {
 
 public:
 
     int priority;
-    T item;
+    string item;
 
-    PriorityQueueElement(T item, int priority) {
+
+    PriorityQueueElement(string item, int priority) {
         this->item = item;
         this->priority = priority;
     }
@@ -22,12 +23,16 @@ public:
         return priority;
     }
 
-    T getItem() {
+    string getItem() {
         return item;
     }
 
-    string toString() {
-        return "<" + item->toString() + ", " + to_string(priority) + ">";
+    string toString(){
+        return item;
+    }
+
+    bool operator==(const string& obj) const{
+        return (obj.compare(this->item)==0);
     }
 };
 

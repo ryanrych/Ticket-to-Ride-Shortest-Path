@@ -7,8 +7,10 @@
 
 struct OutDegree{
     Edge* out;
-    OutDegree(Edge* out){
+    int outDegree;
+    OutDegree(Edge* out,int outDegree){
         this->out=out;
+        this->outDegree=outDegree;
     }
 };
 
