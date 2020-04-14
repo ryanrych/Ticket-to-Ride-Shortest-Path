@@ -19,6 +19,10 @@ struct Edge{
         this->destination=destination;
         this->weight=weight;
     }
+    Edge(string start,string destination){
+        this->start=start;
+        this->destination=destination;
+    }
     Edge(string start,string destination,int weight){
         this->start=start;
         this->destination=destination;
@@ -28,7 +32,7 @@ struct Edge{
         return (obj.weight<=this->weight);
     }
     bool operator==(const Edge& obj) const{
-        return ((obj.weight==this->weight)&&(obj.destination.compare(this->destination)==0) && (obj.start.compare(this->start)==0));
+        return ((obj.destination.compare(this->destination)==0) && (obj.start.compare(this->start)==0));
     }
 };
 
